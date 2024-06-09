@@ -34,7 +34,7 @@ function activate(context) {
                     case 'search':
                         const url = message.url;
                         try {
-                            const response = await axios.get(url);
+                            const response = await axios.get(`https://www.${url}.com`);
                             const webpageContent = response.data;
                             panel.webview.postMessage({ command: 'displayWebpage', content: webpageContent });
                         } catch (error) {
