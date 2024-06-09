@@ -1,40 +1,24 @@
 {
-  "name": "search-blogs-",
-  "displayName": "Search Blogs ",
-  "description": "",
+  "name": "search-blogs",
+  "displayName": "Search Blogs",
+  "description": "A VS Code extension to search blogs",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.90.0"
+      "vscode": "^1.60.0"
   },
-  "categories": [
-    "Other"
+  "activationEvents": [
+      "*"
   ],
-  "activationEvents": [],
-  "main": "./extension.js",
+  "main": "extension.js",
   "contributes": {
-    "commands": [
-      {
-        "command": "search-blogs-.Alhamdulillah",
-        "title": "Alhamdulillah"
-      }
-    ]
-  },
-  "scripts": {
-    "lint": "eslint .",
-    "pretest": "npm run lint",
-    "test": "vscode-test"
-  },
-  "devDependencies": {
-    "@types/mocha": "^10.0.6",
-    "@types/node": "18.x",
-    "@types/vscode": "^1.90.0",
-    "@vscode/test-cli": "^0.0.9",
-    "@vscode/test-electron": "^2.4.0",
-    "eslint": "^8.57.0",
-    "typescript": "^5.4.5"
+      "commands": [
+          {
+              "command": "search-blogs.openSearch",
+              "title": "Display Webpage"
+          }
+      ]
   },
   "dependencies": {
-    "axios": "^1.7.2",
-    "fast-xml-parser": "^4.4.0"
+      "axios": "^0.21.1"
   }
 }

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Webpage</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            margin: 0;
+            box-sizing: border-box;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1 {
+            font-size: 28px;
+            color: #007acc;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        #searchForm {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            background-color: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        #searchInput {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007acc;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #005f99;
+        }
+        #results {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Display Webpage</h1>
+    <form id="searchForm">
+        <input type="text" id="searchInput" placeholder="Enter URL..." required>
+        <button type="submit">Display</button>
+    </form>
+    <div id="results"></div>
+    <script>
+        const vscode = acquireVsCodeApi();
+
+        document.getElementById('searchForm').addEventListener('submit', event => {
+            event.preventDefault();
+            const url = document.getElementById('searchInput').value;
+            vscode.postMessage({ command: 'search', url: url });
+        });
+
+        window.addEventListener('message', event => {
+            const message = event.data;
+            switch (message.command) {
+                case 'displayWebpage':
+                    displayWebpage(message.content);
+                    break;
+            }
+        });
+
+        function displayWebpage(content) {
+            const results = document.getElementById('results');
+            results.innerHTML = content;
+        }
+    </script>
+</body>
+</html>
